@@ -21,10 +21,11 @@ DATA = {
 def dish(request, new_dish):
   q_ty = int(request.GET.get("servings",1))
   context ={}
+  dish = {}
 # Напишите ваш обработчик. Используйте DATA как источник данных
 # Результат - render(request, 'calculator/index.html', context)
 # В качестве контекста должен быть передан словарь с рецептом:
-  for ingr, mass in DATA[new_dish].items:
-      context['recipe'][ingr] = mass*q_ty
-
+  for ingr, mass in DATA[new_dish].items():
+      dish[ingr] = mass*q_ty
+      context['recipe'] = dish
   return render(request, 'calculator/index.html', context)
